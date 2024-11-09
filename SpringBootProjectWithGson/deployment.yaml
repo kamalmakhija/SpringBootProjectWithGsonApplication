@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: springbootwithgson-deployment-name
+  labels:
+    app: springbootwithgson-deployment-label
+spec:
+  replicas: 2  # Number of instances you want to run
+  selector:
+    matchLabels:
+      app: springbootwithgson-pod-label
+  template:
+    metadata:
+      labels:
+        app: springbootwithgson-pod-label
+    spec:
+      containers:
+        - name: springbootwithgson-container
+          image: springbootprojectwithgson:latest  # Image name in Docker
+          imagePullPolicy: IfNotPresent  # Only pull if the image isn't available locally
+          ports:
+            - containerPort: 8080  # Port that your application is listening on
